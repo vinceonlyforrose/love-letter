@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Letter for You 💖</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      overflow: hidden;
+    }
+    h1 {
+      color: #d63384;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    #letter {
+      margin-top: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    #yes-no-buttons {
+      display: none;
+      margin-top: 20px;
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      color: #d63384;
+      text-align: center;
+    }
+    .petal {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: fall 6s linear infinite;
+    }
+    @keyframes fall {
+      0% { top: -50px; }
+      100% { top: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hey Baby 💕</h1>
+  <p>Click below to get the next letter from me.</p>
+  <button onclick="showLetter()">Get a letter 💌</button>
+
+  <div id="letter" style="display:none;"></div>
+
+  <div id="yes-no-buttons">
+    <button onclick="sayYes()">Yes</button>
+    <button id="noButton">No</button>
+  </div>
+
+  <div id="popup">
+    <h2>YEYYYYYYYYYYY</h2>
+    <p>I love you so much babyy</p>
+  </div>
+
+  <script>
+    const letters = [
+      "Hey baby, every moment talking with you feels like magic. I’m so lucky and so happy to have you in my life",
+      "Hey baby, just a reminder that I love you more than words can say. You're my everything",
+      "You make my heart skip a beat every single day. Never forget how much you mean to me",
+      "To my favorite person: thank you for coming into my life. I love you sooo muchh!",
+      "No matter what happens, I’ll always be here, cheering for you and loving you always. Love u, princess",
+      "To my gorgeous, pretty, beautiful, hot wife: I love you so much, baby!",
+      "I can't wait to feel the warmth of your touch, baby. I love youuu",
+      "Hi, gorgeous",
+      "I love youuu", "uhmm", "three more tap baby", "I made this because I want to let you know how much you mean to me baby, i love uuuu", "ready or not-", 
+      "Will you be my girlfriend?"
+    ];
+
+    let currentIndex = 0;
+
+    function showLetter() {
+      const letterBox = document.getElementById("letter");
+      if (currentIndex < letters.length - 1) {
+        letterBox.innerHTML = `<p>${letters[currentIndex]}</p>`;
+        letterBox.style.display = "block";
+        currentIndex++;
+      } else {
+        document.getElementById("yes-no-buttons").style.display = "block";
+        letterBox.innerHTML = `<p>${letters[currentIndex]}</p>`;
+      }
+    }
+
+    function sayYes() {
+      document.getElementById("popup").style.display = "block";
+    }
+
+    const noButton = document.getElementById("noButton");
+
+    function moveNoButton() {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noButton.style.position = "absolute";
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+    }
+
+    // Make it sensitive to both hover (mouse) and touch
+    noButton.addEventListener("mouseenter", moveNoButton);
+    noButton.addEventListener("touchstart", (e) => {
+      e.preventDefault(); // prevent accidental tap
+      moveNoButton();
+    });
+
+    // Pink petals floating effect
+    for (let i = 0; i < 20; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(petal);
+    }
+  </script>
+
+</body>
+</html>
